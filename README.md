@@ -1,66 +1,60 @@
-Flask Image Processing Project
+🖼️ Flask Image Processing Project 🚀
 
-Deskripsi Proyek
-Proyek ini bertujuan untuk membangun sistem pemrosesan gambar secara paralel menggunakan Python, Flask sebagai backend server, dan Dask untuk menjalankan komputasi terdistribusi. Aplikasi ini memungkinkan pengguna untuk mengunggah beberapa gambar sekaligus, memprosesnya (mengubah ukuran dan format), dan mengunduh hasilnya.
+Proyek ini adalah aplikasi berbasis Flask yang memungkinkan pengguna mengunggah gambar, memprosesnya secara paralel (resize & convert), dan mengunduh hasilnya. Menggunakan Python, Flask, Dask, dan Pillow untuk memastikan proses lebih cepat dan efisien. 💻✨
 
+📂 Struktur Proyek
+├── app.py                # Aplikasi Flask utama
+├── process_images.py     # Proses resize dan konversi gambar
+├── requirements.txt      # Library dan dependencies
+├── static
+│   ├── input             # Folder untuk gambar yang diunggah
+│   └── output            # Folder untuk hasil gambar yang diproses
+└── README.md
 
-Fitur Utama
-Unggah Banyak Gambar: Pengguna dapat mengunggah beberapa gambar dalam sekali proses.
-Resize dan Konversi Format: Gambar akan diubah ukurannya ke resolusi yang telah ditentukan dan dikonversi ke format PNG.
-Pemrosesan Paralel: Menggunakan Dask untuk mempercepat proses gambar dalam jumlah besar.
-API Flask: Menggunakan Flask sebagai server untuk menangani unggahan dan unduhan gambar.
+🛠️ Fitur
 
-Teknologi yang Digunakan
-Python 
-Flask
-Dask
-Pillow (PIL)
+🚀 Parallel Processing - Proses banyak gambar sekaligus dengan Dask
+🖼️ Resize & Convert - Ubah ukuran dan format gambar dengan mudah
+📤 Upload & Download - Unggah dan unduh gambar melalui API Flask
+🔒 File Validation - Hanya menerima file berformat PNG, JPG, dan JPEG
 
+📥 Instalasi
 
-
-Instalasi dan Konfigurasi
-
-1. Clone Repository
+Clone repositori ini:
 git clone https://github.com/ladyaksm/image-processing-parallel.git
+
+Masuk ke direktori proyek:
 cd image-processing-parallel
 
-2. Buat Virtual Environment (Opsional)
-python -m venv venv
-source venv/bin/activate  # Untuk Linux/Mac
-venv\Scripts\activate    # Untuk Windows
 
-3. Instalasi Dependensi
-pip install -r requirements.txt
+Instal dependensi:
+pip install flask pillow dask werkzeug
+pip install pillow dask
 
-4. Jalankan Aplikasi
+🚀 Menjalankan Aplikasi
 python app.py
+Akses aplikasi melalui: http://127.0.0.1:5000
 
-Aplikasi akan berjalan di http://localhost:5000.
+📤 Upload Gambar
+Gunakan aplikasi  Postman atau antarmuka lain untuk mengunggah gambar ke endpoint http://127.0.0.1:5000/upload dengan metode POST.
+Format form-data:
+     Key: images (multiple files)
+     Value: Gambar-gambar yang ingin diproses.
 
-Struktur Proyek
 
-.
-├── app.py                         # Flask backend
-├── process_images.py              # Modul pemrosesan gambar
-├── requirements.txt               # Dependensi proyek
-├── static
-│   ├── input                      # Folder untuk unggah gambar
-│   └── output                     # Folder hasil pemrosesan
-└── README.md                      # Dokumentasi ini
+📥 Download Gambar Hasil
+Unduh hasil di folder static/output dengan mengakses:
+http://127.0.0.1:5000/output/<nama_file>.jpg.
 
-Penggunaan
 
-1. Mengunggah Gambar
+🚪 Endpoint API
+Hasil JSON API 
+{
+  "results": [
+    "image1.jpg processed successfully.",
+    "image2.jpg processed successfully."
+  ]
+}
 
-Buka Postman atau tool API lainnya.
-Kirimkan HTTP POST request ke http://localhost:5000/upload dengan form-data dan key images.
-Gambar akan diproses dan hasilnya dapat diunduh di folder static/output.
+Selamat mencoba! 🎉 Jangan lupa bintang ⭐ jika proyek ini bermanfaat.
 
-2. Mengunduh Gambar
-
-Kirimkan GET request ke http://localhost:5000/output/<nama_file> untuk mengunduh gambar hasil.
-Contoh Request
-curl -X POST -F "images=@path/to/image.jpg" http://localhost:5000/upload
-Catatan Penting
-Hanya mendukung file dengan ekstensi .jpg, .jpeg, dan .png.
-Pastikan folder static/input dan static/output sudah dibuat sebelum menjalankan aplikasi.
